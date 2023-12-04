@@ -1,0 +1,10 @@
+1. pastikan install NodeJs (download: https://nodejs.org/en)
+2. Buka terminal pada Direktori terluar
+3. Ketik "npm install" ~~Wait
+4. Ketik "npm run dev"
+5. Buka browser
+6. Pergi ke "localhost:4000/endpoint"
+
+tutorial menggunakan api_key
+note: api_key ada di file .env
+http://localhost:4000/users?api_key={api_key nya};
