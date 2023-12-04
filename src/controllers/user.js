@@ -1,44 +1,41 @@
 require("dotenv").config();
 const post = process.env.POST_KEY;
 const apiKey = process.env.API_KEY;
-let allData = [];
+const allData = require("../Data/users/users");
 
 const Post = (req, res) => {
-  allData += req.body;
-  if (!req.query.post) {
-    parseInt(req.query.post) != post
+  const data = req.body;
+  if (!parseInt(req.query.post)) {
+    res.status(401).json({
+      massage: "Akses ditolak",
+      status: 401,
+    });
+  } else {
+    post != parseInt(req.query.post)
       ? res.status(401).json({
-          massage: "Error",
+          massage: "Akses ditolak",
           status: 401,
         })
       : res.status(200).json({
-          status: 200,
-          data: req.body,
-        });
-  } else {
-    res.status(401).json({
-      massage: "Error",
-      status: 401,
-    });
+          massage: "data diUpload",
+        }),
+      allData.push(req.body);
   }
 };
 
 const Get = (req, res) => {
-  if (!req.query.api_key) {
-    parseInt(req.query.api_key) != apiKey
+  if (!parseInt(req.query.api_key)) {
+    res.status(401).json({
+      massage: "Akses ditolak",
+      status: 401,
+    });
+  } else {
+    req.query.api_key != apiKey
       ? res.status(401).json({
-          massage: "Error",
+          massage: "Akses ditolak",
           status: 401,
         })
-      : res.status(200).json({
-          status: 200,
-          data: allData,
-        });
-  } else {
-    res.status(200).json({
-      status: 200,
-      data: allData,
-    });
+      : res.status(200).json(allData);
   }
 };
 
